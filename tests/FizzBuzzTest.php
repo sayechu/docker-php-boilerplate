@@ -43,4 +43,14 @@ class FizzBuzzTest extends TestCase
 
         $this->assertEquals('Buzz', $fizzBuzzResult);
     }
+
+    /**
+     * @test
+     */
+    public function givenANumberDivisibleByThreeAndFiveReturnsFizzBuzz()
+    {
+        $fizzBuzzResult = $this->fizzBuzz->execute(15);
+
+        $this->assertEquals('FizzBuzz', $fizzBuzzResult);
+    }
 }
