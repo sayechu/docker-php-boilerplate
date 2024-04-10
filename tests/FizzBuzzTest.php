@@ -1,6 +1,5 @@
 <?php
 
-
 use Deg540\DockerPHPBoilerplate\FizzBuzz;
 use PHPUnit\Framework\TestCase;
 
@@ -16,5 +15,17 @@ class FizzBuzzTest extends TestCase
         $fizzBuzzResult = $fizzBuzz->execute(1);
 
         $this->assertEquals(1, $fizzBuzzResult);
+    }
+
+    /**
+     * @test
+     */
+    public function givenANumberDivisibleByThreeReturnsFizz()
+    {
+        $fizzBuzz = new FizzBuzz();
+
+        $fizzBuzzResult = $fizzBuzz->execute(3);
+
+        $this->assertEquals('Fizz', $fizzBuzzResult);
     }
 }
