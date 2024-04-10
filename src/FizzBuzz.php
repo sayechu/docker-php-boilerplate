@@ -3,45 +3,60 @@
 namespace Deg540\DockerPHPBoilerplate;
 class FizzBuzz
 {
+    const FIZZ_BUZZ = 'FizzBuzz';
+    const FIZZ = 'Fizz';
+    const BUZZ = 'Buzz';
+    const FIZZ_NUMBER = 3;
+    const BUZZ_NUMBER = 5;
     public function execute(int $number): int|string
     {
         if ($this->isFizzBuzz($number)) {
-            return 'FizzBuzz';
+            return self::FIZZ_BUZZ;
         }
 
         if ($this->isFizz($number)) {
-            return 'Fizz';
+            return self::FIZZ;
         }
 
         if ($this->isBuzz($number)){
-            return 'Buzz';
+            return self::BUZZ;
         }
 
         return $number;
     }
 
-    public function isFizzBuzz(int $number): bool
-    {
-        return $this->isFizz($number) && $this->isBuzz($number);
-    }
-
-    public function isFizz(int $number): bool
-    {
-        return $this->isDivisibleByThree($number);
-    }
-
-    public function isBuzz(int $number): bool
-    {
-        return $this->isDivisibleByFive($number);
-    }
-
     public function isDivisibleByThree(int $number): bool
     {
-        return $number % 3 == 0;
+        return $number % self::FIZZ_NUMBER == 0;
     }
 
     public function isDivisibleByFive(int $number): bool
     {
-        return $number % 5 == 0;
+        return $number % self::BUZZ_NUMBER == 0;
+    }
+
+    public function isFizzBuzz(int $number): bool
+    {
+        return $this->isDivisibleByThree($number) && $this->isDivisibleByFive($number);
+    }
+
+    public function containsTheNumberThree(int $number): bool
+    {
+        return str_contains($number, self::FIZZ_NUMBER);
+    }
+
+    public function containsTheNumberFive(int $number): bool
+    {
+        return str_contains($number, self::BUZZ_NUMBER);
+    }
+
+    public function isFizz(int $number): bool
+    {
+        return $this->isDivisibleByThree($number) || $this->containsTheNumberThree($number);
+    }
+
+    public function isBuzz(int $number): bool
+    {
+        return $this->isDivisibleByFive($number) || $this->containsTheNumberFive($number);
     }
 }
